@@ -1,0 +1,43 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Comment {
+  commentid: String!
+  content: String
+  todoid: ID!
+}
+
+type Mutation {
+  addComment(content: String, todoid: ID!): Comment
+  createTodo(description: String, id: ID!, name: String, priority: Int, status: TodoStatus): Todo
+}
+
+type Query {
+  listTodos(limit: Int, nextToken: String): TodoConnection
+}
+
+type Subscription {
+  onCreateTodo: Todo @aws_subscribe(mutations : ["createTodo"])
+}
+
+type Todo {
+  comments: [Comment]
+  description: String
+  id: ID!
+  name: String
+  priority: Int
+  status: TodoStatus
+}
+
+type TodoConnection {
+  nextToken: String
+  todos: [Todo]
+}
+
+enum TodoStatus {
+  done
+  pending
+}
