@@ -1,3 +1,4 @@
 node_modules
 /**/node_modules
 appsync/aws-exports.js
+/**/package-lock.json
