@@ -67,7 +67,7 @@ query {
 
 // Set up a subscription query
 const subquery = gql(`
-subscription onCreateTodo {
+subscription CreateTodoSub {
     onCreateTodo
         {
             id
